@@ -1,5 +1,7 @@
 /*
 	
+	Hi!
+	
 	S.E.Z. - SifiGame EZ
 	
 	This mod was produced and developed by Matthew W.
