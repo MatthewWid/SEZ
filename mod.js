@@ -28,7 +28,7 @@ var mod = {
 }
 
 // Set Properties of and Create Canvas
-var canvas = document.createElement('canvas');
+var canvas = document.createElement("canvas");
 canvas.id     = "minimap";
 canvas.width  = mod.minimap_width;
 canvas.height = mod.minimap_height;
@@ -40,6 +40,16 @@ canvas.style.background = mod.minimap_background;
 canvas.style.bottom = "0px";
 canvas.style.opacity = mod.minimap_opacity;
 document.body.appendChild(canvas);
+
+// Set Properties of and Create Console
+var console = document.createElement("input");
+console.id = "console";
+console.style.width = "500px";
+console.style.zIndex = 1000;
+console.style.position = "absolute";
+console.style.bottom = "5px";
+console.style.fontSize = "40px";
+document.body.appendChild(console);
 
 // Get element and get context of minimap canvas
 var minimap = document.getElementById("minimap");
