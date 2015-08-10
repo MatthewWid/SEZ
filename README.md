@@ -10,7 +10,8 @@ Sifi Game on Github: https://github.com/nugyflex/sifigame
 #The Console
 
 A new addition to the mod features a console.  
-This allows you to change elements of the game by typing certain commands.
+This allows you to change elements of the game by typing certain commands.  
+Press the "~" to bring up the console, it will appear in the bottom left.
 
 Current commands:
 
