@@ -51,6 +51,16 @@ console.style.bottom = "5px";
 console.style.fontSize = "40px";
 document.body.appendChild(console);
 
+// Respond to console inputs
+function respond(input) {
+	console.log(input);
+}
+
+// Event Listeners
+console.addEventListener("keydown", function(event) {
+	if (event.keyCode == 13) { respond($("#console").val()) }
+});
+
 // Get element and get context of minimap canvas
 var minimap = document.getElementById("minimap");
 	mm = minimap.getContext("2d");
