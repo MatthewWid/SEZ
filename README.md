@@ -16,3 +16,12 @@ Current commands:
 | **Command** | **Parametres** | **Description** | **Example* |
 | ammo | *<number>* | Set current ammo reserve (Note: Does not change current ammo in magazine | ammo 100 |
 | health | *<number>* | Set current health (Starting health is 100) | health 500
+
+| Command | Parametres          |
+| ------------- | ----------- |
+| 'w' | Go Forward |
+| 'a' | Go Left |
+| 's' | Go Backward |
+| 'd' | Go Right |
+| 'a' | Go Left |
+| Shift | Sprint |
