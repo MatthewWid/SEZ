@@ -27,6 +27,9 @@ var mod = {
 	health_color: "white"
 }
 
+var split = []
+var consDisplayed = false;
+
 // Set Properties of and Create Canvas
 var canvas = document.createElement("canvas");
 canvas.id     = "minimap";
@@ -49,16 +52,40 @@ console.style.zIndex = 1000;
 console.style.position = "absolute";
 console.style.bottom = "5px";
 console.style.fontSize = "40px";
+console.style.display = "none";
+console.placeholder = "Enter Console Commands";
 document.body.appendChild(console);
 
 // Respond to console inputs
 function respond(input) {
-	console.log(input);
+	split = input.split(" ");
+
+	if (split[0] == "ammo") {
+		playercollection.array[0].weapons[playercollection.array[0].weaponinuse].ammores = parseInt(split[1]);
+	} else if (split[0] == "health") {
+		playercollection.array[0].health = parseInt(split[1]);
+	}
 }
 
 // Event Listeners
 console.addEventListener("keydown", function(event) {
-	if (event.keyCode == 13) { respond($("#console").val()) }
+	if (event.keyCode == 13) {
+		respond($("#console").val());
+		$("#console").val("");
+		$("#console").css("display", "none");
+		consDisplayed = false;
+	}
+});
+window.addEventListener("keydown", function(event) {
+	if (event.keyCode == 192) {
+		if (consDisplayed) {
+			$("#console").css("display", "none");
+			consDisplayed = false;
+		} else {
+			$("#console").css("display", "block");
+			consDisplayed = true;
+		}
+	}
 });
 
 // Get element and get context of minimap canvas
