@@ -19,4 +19,4 @@ Current commands:
 ammo | *number* | Set current ammo reserve (Doesn't change current ammo in magazine)
 health | *number* | Set current health (Starting health is 100)
 
-EG: "ammo 100" or "health 500"
+*EG: "ammo 100" or "health 500"*
