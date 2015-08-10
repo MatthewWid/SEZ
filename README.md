@@ -17,7 +17,7 @@ Current commands:
 | ammo | *<number>* | Set current ammo reserve (Note: Does not change current ammo in magazine | ammo 100 |
 | health | *<number>* | Set current health (Starting health is 100) | health 500
 
-| Command | Parametres          |
+| Command | Parametres | Description | Example |
 | ------------- | ----------- |
 | 'w' | Go Forward |
 | 'a' | Go Left |
