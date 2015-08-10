@@ -14,7 +14,9 @@ This allows you to change elements of the game by typing certain commands.
 
 Current commands:
 
-**Command** | **Parametres** | **Description** | **Example**
---------------|----------------|-----------------|------------
-ammo | *number* | Set current ammo reserve (Does not change current ammo in magazine) | ammo 100
-health | *number* | Set current health (Starting health is 100) | health 500
+**Command** | **Parametres** | **Description**
+--------------|----------------|-----------------
+ammo | *number* | Set current ammo reserve (Doesn't change current ammo in magazine)
+health | *number* | Set current health (Starting health is 100)
+
+EG: "ammo 100" or "health 500"
