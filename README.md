@@ -17,10 +17,10 @@ Current commands:
 
 **Command** | **Parametres** | **Description**
 --------------|----------------|-----------------
-ammo | *<number>* | Set current ammo reserve (Doesn't change current ammo in magazine)
-health | *<number>* | Set current health (Starting health is 100)
-cash\* | *<number>* | Set current money
-print\* | *<text>* | Print text on screen
+ammo | *number* | Set current ammo reserve (Doesn't change current ammo in magazine)
+health | *number* | Set current health (Starting health is 100)
+cash\* | *number* | Set current money
+print\* | *text* | Print text on screen
 god\* |  | Toggle god mode (no loss of health) on and off
 tracers\* |  | Toggle tracers on and off
 
