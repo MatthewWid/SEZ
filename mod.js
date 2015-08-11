@@ -58,6 +58,7 @@ console.style.position = "absolute";
 console.style.bottom = "5px";
 console.style.fontSize = "40px";
 console.style.display = "none";
+console.style.cursor = "default";
 console.placeholder = "Enter Console Commands";
 document.body.appendChild(console);
 
@@ -133,6 +134,11 @@ function respond(input) {
 				message(msg, "Turned on infinite ammo.");
 			}
 			break;
+		case "unlockalldoors":
+			$.each(platformcollection.array, function(index) {
+				platformcollection.array[index].locked = 0
+				alert(platformcollection.array[index].locked);
+			})
 	}
 }
 
