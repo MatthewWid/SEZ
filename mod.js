@@ -1,6 +1,8 @@
 /*
 	
 	S.E.Z. - SifiGame EZ
+
+	V0.3.1
 	
 	This mod was produced and developed by Matthew W.
 	Intended for use in the game "SifiGame" by Jack R.
@@ -29,6 +31,9 @@ var mod = {
 
 var split = []
 var consDisplayed = false;
+var tracersOn = false;
+var infAmmoIsOn = false;
+var god = false;
 
 // Set Properties of and Create Canvas
 var canvas = document.createElement("canvas");
@@ -56,14 +61,78 @@ console.style.display = "none";
 console.placeholder = "Enter Console Commands";
 document.body.appendChild(console);
 
+// Set Properties of and Create Message Box
+var msg = document.createElement("p");
+msg.id = "msg";
+msg.style.position = "absolute";
+msg.style.zIndex = 1001;
+msg.style.color = "white";
+msg.style.top = "190px";
+msg.style.left = "20px";
+msg.style.opacity = 0;
+msg.style.fontSize = "10px"
+msg.innerHTML = "hi there";
+document.body.appendChild(msg);
+
+// Animate Message
+function message(elem, msgText) {
+	elem.innerHTML = msgText;
+	$("#msg").animate({
+		opacity: 1,
+		fontSize: "30px"
+	}, 200).delay(2*1000).animate({
+		opacity: 0,
+		fontSize: "10px"
+	}, 200);
+}
+
 // Respond to console inputs
 function respond(input) {
 	split = input.split(" ");
 
-	if (split[0] == "ammo") {
-		playercollection.array[0].weapons[playercollection.array[0].weaponinuse].ammores = parseInt(split[1]);
-	} else if (split[0] == "health") {
-		playercollection.array[0].health = parseInt(split[1]);
+	switch(split[0]) {
+		case "print":
+			message(msg, input.split("print ")[1]);
+			break;
+		case "ammo":
+			playercollection.array[0].weapons[playercollection.array[0].weaponinuse].ammores = parseInt(split[1]);
+			message(msg, "Set ammo to: "+split[1]+".");
+			break;
+		case "health":
+			playercollection.array[0].health = parseInt(split[1]);
+			message(msg, "Set health to: "+split[1]+".");
+			break;
+		case "cash":
+			playercollection.array[0].money = parseInt(split[1]);
+			message(msg, "Set money to: "+split[1]+".");
+			break;
+		case "god":
+			if (god) {
+				god = false;
+				message(msg, "Turned off god mode.");
+			} else {
+				god = true;
+				message(msg, "Turned on god mode.");
+			}
+			break;
+		case "tracers":
+			if (tracersOn) {
+				tracersOn = false;
+				message(msg, "Turned off tracers.");
+			} else {
+				tracersOn = true;
+				message(msg, "Turned on tracers.");
+			}
+			break;
+		case "infammo":
+			if (infAmmoIsOn) {
+				infAmmoIsOn = false;
+				message(msg, "Turned off infinite ammo.");
+			} else {
+				infAmmoIsOn = true;
+				message(msg, "Turned on infinite ammo.");
+			}
+			break;
 	}
 }
 
@@ -129,28 +198,38 @@ function sez() {
 	
 	if (game2.running) {
 		
+		if (infAmmoIsOn) {
+			playercollection.array[0].weapons[playercollection.array[0].weaponinuse].ammo = playercollection.array[0].weapons[playercollection.array[0].weaponinuse].ammomax
+		}
+
+		if (god) {
+			playercollection.array[0].health = playercollection.array[0].healthmax;
+		}
+
 		// Set up colours for enemies and start for loop
 		ctx.save();
 		mm.fillStyle = mod.minimap_icon_color_enemy;
 		mm.strokeStyle = mod.minimap_icon_color_enemy;
 		for (var i = 2; i < playercollection.array.length; i++) {
-			
-			// Draw Enemies
+
+			// Draw Enemies on Minimap
 			mm.beginPath();
 			mm.arc(playercollection.array[i].x/16+50, playercollection.array[i].y/16+75, mod.minimap_icon_size, 0, 2*Math.PI);
 			mm.fill();
 			mm.stroke();
 			
-			// Set Colours Of Lines
-			if (lineDistance(playercollection.array[0], playercollection.array[i]) < 200) { ctx.strokeStyle = "red"; }
-			if (lineDistance(playercollection.array[0], playercollection.array[i]) > 199 && lineDistance(playercollection.array[i], playercollection.array[i]) < 330) { ctx.strokeStyle = "orange"; }
-			if (lineDistance(playercollection.array[0], playercollection.array[i]) > 329) { ctx.strokeStyle = "green"; }
-			
-			// Draw Lines
-			ctx.beginPath();
-			ctx.moveTo(playercollection.array[0].x+playercollection.array[0].width/2, playercollection.array[0].y+playercollection.array[0].height/2);
-			ctx.lineTo(playercollection.array[i].x+playercollection.array[i].width/2, playercollection.array[i].y+playercollection.array[i].height/2);
-			ctx.stroke();
+			if (tracersOn) {
+				// Set Colours Of Tracers
+				if (lineDistance(playercollection.array[0], playercollection.array[i]) < 200) { ctx.strokeStyle = "red"; }
+				if (lineDistance(playercollection.array[0], playercollection.array[i]) > 199 && lineDistance(playercollection.array[i], playercollection.array[i]) < 330) { ctx.strokeStyle = "orange"; }
+				if (lineDistance(playercollection.array[0], playercollection.array[i]) > 329) { ctx.strokeStyle = "green"; }
+				
+				// Draw Tracers
+				ctx.beginPath();
+				ctx.moveTo(playercollection.array[0].x+playercollection.array[0].width/2, playercollection.array[0].y+playercollection.array[0].height/2);
+				ctx.lineTo(playercollection.array[i].x+playercollection.array[i].width/2, playercollection.array[i].y+playercollection.array[i].height/2);
+				ctx.stroke();
+			}
 			
 		}
 		ctx.restore();
