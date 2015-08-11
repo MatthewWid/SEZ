@@ -24,4 +24,4 @@ print\* | *<text>* | Print text on screen
 god\* |  | Toggle god mode (no loss of health) on and off
 tracers\* |  | Toggle tracers on and off
 
-*\*These commands have not yet been implemented into the game, but will be added in a few hours*
+* \*These commands have not yet been implemented into the game, but will be added in a few hours*
